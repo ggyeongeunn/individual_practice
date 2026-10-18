@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .box {
   /* width: 100px;
   height: 100px; */
@@ -13,27 +18,84 @@
 .wrap {
   background-color: #c1d4ff;
   padding: 10px;
-  width: 50%;
-  height: 50vh;
+  width: 100%;
+  height: 100vh;
   display: grid;
+  /* 행 간격 */
+  row-gap: 10px;
+  /* 열 간격 */
+  column-gap: 10px;
+  /* row col */
+  gap: 10px 20px;
 
-  /* columns */
-  /* 
-  속성 개수만큼 행 생성 
-  - 각 너비값
-  - 1fr : fraction - 행 갯수만큼 비율 값
-  - px값, fr값, %값 섞어서 사용 가능
-  - px값 넣고 auto 넣으면 남은 여백 차지
-  
-  */
+  /* 속성 개수만큼 행열 생성  */
+  /* - 각 너비값 */
   grid-template-columns: 200px 200px 500px;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-columns: 200px 1fr 1fr 1fr 1fr;
-  grid-template-columns: 100px 200px auto;
-
-  /* 3col per 1fr */
-  /* grid-template-columns: repeat(3, 1fr); */
-
-  /* rows */
-  /* grid-template-rows: repeat(7, 1fr); */
+  /* - 1fr(fraction) - 행 갯수만큼 비율 값 */
+  grid-template-columns: 1fr 1.5fr 0.5fr 3fr 1fr;
+  /* - px값, fr값, %값 섞어서 사용 가능 */
+  grid-template-columns: 200px 1fr 1fr 20% 1fr;
+  /* - px값 넣고 auto 넣으면 남은 여백 차지 */
+  grid-template-columns: 100px 50px auto;
+  /* - repeat(반복횟수, 반복값)  */
+  grid-template-columns: repeat(5, 1fr);
+  /* - minmax(100, auto) - 최소최대값 지정  */
+  grid-template-columns: minmax(800px, 1fr) minmax(100px, 1fr);
+  grid-template-columns: repeat(4, minmax(200px, 1fr));
+  /* - auto-fill - 행 개수를 정하지 않고, 설정된 너비가 허용하는 한 최대한 셀을 채움 */
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  /* - auto-fit - 남는 공간 채움 */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: 50px;
+  /* grid-template-columns의 통제를 받지 않는 column */
+  grid-auto-columns: 1fr 4fr;
+  /* 영역 이름으로 그리드 정의 */
+  grid-template-areas:
+    "header header header"
+    "   a    main    b   "
+    "   .     .      .   "
+    "footer footer footer";
+  /* 자동배치 : row, column, dense, row dense, column dense */
+  grid-auto-flow: dense;
+  /* align-items : col 방향 정렬 */
+  /* justify-items : row 방향 정렬 */
+  /* place-items: align-items, justify-items; */
+  /* align-content : 아이템 그룹 세로정렬 */
+  /* justify-content : 아이템 그룹 가로정렬 */
+  /* place-content : align-content, justify-content */
 }
+.box:nth-child(1) {
+  /* 셀 병합 */
+  /* grid-column-start: 1;
+  grid-column-end: 3;
+  grid-column: 1 / 3;
+  grid-column: 1 / span 2;
+  grid-column: auto / span 3;
+  grid-row-start: 1;
+  grid-row-end: 4;
+  grid-row: 1 / 4;
+  grid-row: 1 / span 3; */
+  /* grid-column: 8; */
+}
+.box:nth-child(3) {
+  /* align-self : 개별 아이템 세로 정렬 */
+  align-self: end;
+  /* justify-self : 개별 아이템 가로 정렬 */
+  justify-self: center;
+  /* place-self : align-self, justify-self;*/
+  /* order : 순서 지정 */
+  /* z-index : z축 정렬 */
+  /* z-index: 9;
+  transform: scale(10); */
+}
+
+/* flex */
+/* flex-bias : 아이템 기본 크기 설정(최소값) row: width, col: height */
+/* flex-grow : flex-bias의 값보다 커질수 있는지, 여백을 비율로 나누어가짐 */
+/* flex-shrink : flex-bias의 값보다 작아질수 있는지, 값이 커질수록 줄어듦 */
+/* flex : grow shrink basis */
+/* align-self : 수직 축 정렬 */
+/* order : 배치순서 */
+/* z-index : z축 정렬 */
+/* z-index: 9;
+  transform: scale(10); */
